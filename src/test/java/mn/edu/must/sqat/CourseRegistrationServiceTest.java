@@ -82,9 +82,10 @@ class CourseRegistrationServiceTest {
         verify(repository).saveRegistration("S1", "CS201");
     }
 
-    @Test
-    void register_nullStudentId_throwsIllegalArgumentAndTouchesNothing() {
+        @Test
+    void register_nullArgument_throwsIllegalArgumentAndTouchesNothing() {
         assertThrows(IllegalArgumentException.class, () -> service.register(null, "CS201"));
+        assertThrows(IllegalArgumentException.class, () -> service.register("S1", null));
 
         verifyNoInteractions(repository, emailSender);
     }
